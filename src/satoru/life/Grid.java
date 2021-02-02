@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 public class Grid {
 
@@ -18,6 +19,17 @@ public class Grid {
 
     public Grid(int row, int column){
         this.grid = new int[row][column];
+    }
+
+    public static Grid randomGrid(int row, int column){
+        Grid g = new Grid(row, column);
+        Random r = new Random();
+        for(int i=0; i<row; i++){
+            for(int j=0; j<column; j++){
+                g.set(i,j, r.nextInt(2));
+            }
+        }
+        return g;
     }
 
     @Override
@@ -92,7 +104,7 @@ public class Grid {
             for(int j=0; j< grid[0].length; j++){
                 var e = grid[i][j];
 
-                if(e == 3 || e == 11 || e ==12){
+                if(e == 3 || e == 11 || e ==  12){
                     grid[i][j] = 1;
                 }else{
                     grid[i][j] = 0;
